@@ -43,7 +43,7 @@ slack_notification_task:
   expected_output: >
     post {space_query} and {research_response}  to slack channel
     Formatted as markdown without '```'
-  agent: internal_notification_rep
+  agent: feedback_agent
   inputs:
     channel: "random"
     message: "{space_query} \n {research_response}"

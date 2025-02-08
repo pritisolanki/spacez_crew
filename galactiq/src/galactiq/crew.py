@@ -92,7 +92,7 @@ class Galactiq():
 	@task
 	def slack_notification_task(self) -> Task:
 		return Task(
-			config=self.tasks_config['feedback_agent_task'],
+			config=self.tasks_config['slack_notification_task'],
 			tools=[SlackTool()]
 		)
 	
