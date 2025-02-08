@@ -18,8 +18,10 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs',
-        'current_year': str(datetime.now().year)
+        'space_query': 'give me roket details of mission apollo',
+        'role':'researcher',
+        'current_year': str(datetime.now().year),
+        'topic': 'Space'
     }
     
     try:

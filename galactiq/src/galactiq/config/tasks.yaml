@@ -1,17 +1,49 @@
-research_task:
+spacez_manager_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Conduct a thorough research about {space_query}.
+    If query is relate to Space missions forward the query to space_mission_agent.
+    If query is related to satellite data forward the query to satellite_data_agent.
+    If query is related to celestial events forward the query to celestial_events_agent.
+    If query is related to research papers forward the query to research_papers_agent.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+   forward {space_query} to respective agent along with {role} and return the research result. If response is not found or not useful return message "We apologies but we have no information as of now. We have pushed the query to backend team.". Push the {space_query} to feedback_agent.
+  agent: spacez_manager
 
-reporting_task:
+space_mission_agent_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    As a {role}, conduct a thorough research about {space_query}.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
+    return the research result
+  agent: spacez_mission_agent
+
+satellite_data_agent_task:
+  description: >
+    As a {role}, conduct a thorough research about {space_query}.
+  expected_output: >
+    return the research result
+  agent: spacez_satellite_data_agent 
+
+celestial_events_agent_task:
+  description: >
+    As a {role}, conduct a thorough research about {space_query}.
+  expected_output: >
+    return the research result
+  agent: spacez_celestial_events_agent
+
+research_papers_agent_task:
+  description: >
+    As a {role}, conduct a thorough research about {space_query} and return the list of paper in bullet format
+  expected_output: >
+    return the research result  
+  agent: spacez_research_papers_agent 
+
+slack_notification_task:
+  description: >
+    Post {research_response} and {space_query} to slack random channel
+  expected_output: >
+    post {space_query} and {research_response}  to slack channel
     Formatted as markdown without '```'
-  agent: reporting_analyst
+  agent: internal_notification_rep
+  inputs:
+    channel: "random"
+    message: "{space_query} \n {research_response}"
