@@ -1,6 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from galactiq.tools.slack_tool import SlackTool
+from galactiq.tools.arxiv_tool import ArxivTool
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -18,7 +19,7 @@ class Galactiq():
 	# If you would like to add tools to your agents, you can learn more about it here:
 	# https://docs.crewai.com/concepts/agents#agent-tools
 	@agent
-	def spacez_manger(self) -> Agent:
+	def spacez_manager(self) -> Agent:
 		return Agent(
 			config=self.agents_config['spacez_manager'],
 			verbose=True
@@ -63,6 +64,7 @@ class Galactiq():
 	def spacez_manager_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['spacez_manager_task'],
+			output_file="resource_response.txt"
 		)
 
 	@task
@@ -87,6 +89,8 @@ class Galactiq():
 	def research_papers_agent_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['research_papers_agent_task'],
+			output_file="resource_response.txt",
+			tools=[ArxivTool()]
 		)		
 	
 	@task
