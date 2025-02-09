@@ -1,6 +1,6 @@
 # Galactiq Crew
 
-Welcome to the Galactiq Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+Welcome to the Galactiq Crew project, powered by [crewAI](https://crewai.com). GalacticIQ - Unlocking the Universe, One Question at a Time. Presented by Team SpaceZ, is an AI-powered space education platform for researchers, educators, and students. It provides information on space data based on the persona.
 
 ## Installation
 
@@ -14,41 +14,36 @@ pip install uv
 
 Next, navigate to your project directory and install the dependencies:
 
-(Optional) Lock the dependencies and install them by using the CLI command:
+Lock the dependencies and install them by using the CLI command:
 ```bash
 crewai install
 ```
 ### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+**Add your `OPENAI_API_KEY` from AI/ML, `SLACK_BOT_TOKEN` and `MODEL` into the `.env` file**
 
-- Modify `src/galactiq/config/agents.yaml` to define your agents
-- Modify `src/galactiq/config/tasks.yaml` to define your tasks
-- Modify `src/galactiq/crew.py` to add your own logic, tools and specific args
-- Modify `src/galactiq/main.py` to add custom inputs for your agents and tasks
+## Frontend
+Frontend is built using Next.JS and hosted on Vercel. You can find the frontend code [GalactiqIQ Frontend](https://github.com/kumarvishalben/galact-iq)
 
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
-```
-
-This command initializes the galactIQ Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+## Demo
+Checkout the demo > [GalactiqIQ](https://galact-iq.vishalx360.dev/)
 
 ## Understanding Your Crew
-
 The galactIQ Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+
+Therer are six agents in the galactIQ Crew:
+- **spacez_manager**: Receives query and assigns the tasks to appropriate agents. Return response to customer and for unresolved queries send it to the backend team.
+- **spacez_mission_agent**: Provide information about space missions and their payloads
+- **spacez_satellite_data_agent**: Provide information about satellite data
+- **spacez_celestial_events_agent**: Provide information about celestial events
+- **spacez_research_papers_agent**: Provide information about research papers
+- **feedback_agent**: Collect feedback and push the feedback to the slack channel
 
 ## Support
 
 For support, questions, or feedback regarding the Galactiq Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+- Reach out to us through our [GitHub repository](https://github.com/pritisolanki/spacez_crew)
 
-Let's create wonders together with the power and simplicity of crewAI.
+
+Unlocking the Universe, One Question at a Time. 🚀
+
