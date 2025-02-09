@@ -39,10 +39,28 @@ Therer are six agents in the galactIQ Crew:
 - **spacez_research_papers_agent**: Provide information about research papers
 - **feedback_agent**: Collect feedback and push the feedback to the slack channel
 
+## Tools and Technologies
+- **OpenAI API**: The OpenAI API is used to generate responses to user queries.GPT-4o model.
+- **Slack API**: The Slack API is used to send and receive messages from the Slack workspace.
+- **Arxiv API**: The Arxiv API is used to fetch research papers and articles.
+- **Nasa API**: The NASA API is used to fetch space data .
+- **CrewAI**: CrewAI is a Python library that simplifies the development of AI-powered chatbots and virtual assistants.
+- **Python**: The project is built using Python, a high-level, general-purpose programming language.
+- **Next.js**: The frontend is built using Next.JS, a React framework for building server-rendered applications.
+- **Vercel**: The frontend is hosted on Vercel, a cloud platform for static sites and serverless functions.
+- **GCP**: The CrewAI project is deployed on Google Cloud Platform
+
+## Team Social
+
+- [Priti Solanki LinkedIn](https://www.linkedin.com/in/pritisolanki/)
+- [Vishal Kumar LinkedIn](https://www.linkedin.com/in/vishalx360/)
+- [Shamas Liaqat LinkedIn](https://www.linkedin.com/in/shamasliaqat/)
+
 ## Support
 
 For support, questions, or feedback regarding the Galactiq Crew or crewAI.
 - Reach out to us through our [GitHub repository](https://github.com/pritisolanki/spacez_crew)
+- Email us at [Support](mailto:pritisolanki@purplespot.ink)
 
 
 Unlocking the Universe, One Question at a Time. 🚀
