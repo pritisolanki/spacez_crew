@@ -7,7 +7,7 @@ spacez_manager_task:
     - If the query relates to Research Papers, delegate to `research_papers_agent` **ONLY**.
   
   expected_output: >
-    - `{space_query}` is sent **only to one relevant agent** based on `{role}`.
+    - `{space_query}` is sent **only to one relevant agent** based on `{category}`.
     - The selected agent processes the request and returns the research result.
     - If in response noresult string is found, return:
       `"We apologize, but we have no information at this moment. Your query has been forwarded to the backend team for further research."`
@@ -19,10 +19,15 @@ spacez_manager_task:
 
 space_mission_agent_task:
   description: >
-    As a {role}, conduct a thorough research about {space_query}.
+    As a space mission specialist find out all details aboout space missions related to {space_query} for {role} and store in file names "resource_response.txt"
   expected_output: >
-    return the research result
+    - The selected agent processes the request and returns the research result.
+    - If in response noresult string is found, return:
+      We apologize, but we have no information at this moment. Your query has been forwarded to the backend team for further research.
   agent: spacez_mission_agent
+  inputs:
+    role: "{role}"
+    query: "{space_query}"
 
 satellite_data_agent_task:
   description: >

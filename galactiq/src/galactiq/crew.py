@@ -2,6 +2,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from galactiq.tools.slack_tool import SlackTool
 from galactiq.tools.arxiv_tool import ArxivTool
+from galactiq.tools.gpt_tool import GPTTool
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -71,6 +72,7 @@ class Galactiq():
 	def space_mission_agent_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['space_mission_agent_task'],
+			tools=[GPTTool()]
 		)
 
 	@task
