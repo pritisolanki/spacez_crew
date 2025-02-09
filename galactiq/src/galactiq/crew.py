@@ -79,12 +79,14 @@ class Galactiq():
 	def satellite_data_agent_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['satellite_data_agent_task'],
+			tools=[GPTTool()]
 		)
 	
 	@task
 	def celestial_events_agent_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['celestial_events_agent_task'],
+			tools=[GPTTool()]
 		)
 	
 	@task
