@@ -18,12 +18,11 @@ def run():
     Run the crew.
     """
     inputs = {
-        'space_query': 'give me details of expedition 64',
+        'space_query': 'give me details of space mission expeditions 64',
         'role':'educator',
-        'category':'space mission',
         'current_year': str(datetime.now().year),
         'topic': 'Space',
-        'research_response':'response will be return in this variable'
+        'research_response': "research_response" 
     }
     
     try:

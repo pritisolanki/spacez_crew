@@ -3,3 +3,4 @@ __pycache__/
 .DS_Store
 .venv
 resource_response.txt
+resource_response.json

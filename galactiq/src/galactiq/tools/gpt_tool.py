@@ -1,12 +1,13 @@
 from crewai.tools import BaseTool
 from typing import Type, Dict, Any
 from pydantic import BaseModel, Field, ConfigDict
-import openai
 from dotenv import load_dotenv
 import os
+import requests
+from openai import OpenAI
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+OpenAI.api_key = os.getenv("OPENAI_API_KEY")
 model = os.getenv("OPENAI_MODEL")
 openapibase = os.getenv("OPENAI_API_BASE")
 
@@ -30,11 +31,10 @@ class GPTTool(BaseTool):
         {space_query} for {role}
         
         Requirements:
-        1. Response should be between 350-400 words
+        1. Response should be between 200-250 words
         2. Focus on key points and relevant information
         3. Use clear and concise language
         4. Maintain a professional tone
-        5. Include relevant examples where appropriate
         """
 
     def _count_words(self, text: str) -> int:
@@ -57,42 +57,44 @@ class GPTTool(BaseTool):
             space_query = kwargs.get('space_query')
             role = kwargs.get('role')
             temperature = kwargs.get('temperature', 0.7)
-            gpt_model = kwargs.get('model', model)
 
             # Create formatted prompt
             prompt = self._create_prompt(space_query,role)
             
+            headers = {
+                'Authorization': f'Bearer {OpenAI.api_key}',
+                'Content-Type': 'application/json'
+            }
             # Make API call
-            client = openai.OpenAI(
-                api_key=openai.api_key,
-                base_url=openapibase
+            client = OpenAI(
+                base_url=openapibase,
+                api_key=OpenAI.api_key,    
             )
-            # Make API call
-            response = openai.ChatCompletion.create(
-                model=model,
-                openapibase=openapibase,
+            response = client.chat.completions.create(
+                model="gpt-4o-mini-2024-07-18",
                 messages=[
-                    {"role": "system", "content": "You are a knowledgeable space research assistant providing detailed analysis and summaries."},
-                    {"role": "user", "content": prompt}
+                    {
+                        "role": "system",
+                        "content": "You are an AI space assistant who helps users with their space queries according to {role}.",
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    },
                 ],
-                temperature=temperature,
-                max_tokens=600  # Approximately 450 words
+                max_tokens=300
             )
-
             # Extract response text
-            response_text = response.choices[0].message.content.strip()
-            word_count = self._count_words(response_text)
+            response_text = response.choices[0].message.content.strip()            
 
             return {
                 "status": "success",
                 "response": response_text,
-                "word_count": word_count,
-                "model_used": model,
                 "tokens_used": response.usage.total_tokens,
                 "query": space_query
             }
 
-        except openai.error.OpenAIError as e:
+        except OpenAI.OpenAIError as e:
             return {
                 "status": "error",
                 "message": f"OpenAI API error: {str(e)}",
