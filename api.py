@@ -3,15 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime
 from galactiq.crew import Galactiq
+import os
 
 app = FastAPI(
     title="Galactiq API", description="API for running Galactiq crew operations"
 )
 
-# Add CORS middleware to allow requests from localhost:3000
+# Add CORS middleware to allow requests from everywhere
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],  # Allow requests from all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -43,4 +44,5 @@ async def run_crew(input_data: CrewInput):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))  # Use environment variable for PORT
+    uvicorn.run(app, host="0.0.0.0", port=port)
